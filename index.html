@@ -14,14 +14,14 @@
       position: relative;
     }
 
-    h1, h2 {
+    h1, h2, .intro {
       font-family: 'UnifrakturCook', serif;
       color: #f1f1f1;
     }
 
     h1 {
-      font-size: 3em;
-      margin-top: 0;
+      font-size: 2.8em;
+      margin-top: 1em;
     }
 
     h2 {
@@ -29,9 +29,28 @@
       margin-top: 2em;
     }
 
+    .intro {
+      font-size: 2em;
+      margin-bottom: 1.5em;
+    }
+
+    .trennlinie {
+      margin: 3em 0;
+      border-top: 1px solid #444;
+    }
+
+    a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
     .federkiel {
       position: absolute;
-      top: 1em;
+      top: 1.5em;
       right: 1.5em;
       width: 40px;
       height: auto;
@@ -43,37 +62,24 @@
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
-
-    .trennlinie {
-      margin: 3em 0;
-      border-top: 1px solid #444;
-    }
-
-    .intro {
-      font-family: 'UnifrakturCook', serif;
-      font-size: 2em;
-      margin-bottom: 2em;
-    }
-
-    a {
-      color: #d4af37;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Quill_icon_gold.svg" alt="Federkiel" class="federkiel">
 
-  <div class="intro">Seid gegrüßt, Reisender</div>
+  <!-- Eingebettete Federkiel-SVG -->
+  <svg class="federkiel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#d4af37">
+    <path d="M290.7 42.2c-20.2 6.5-53.3 22.8-77.3 37.7-36.7 22.6-73.6 55.6-105.1 92.3C64.9 219.7 39.3 262.7 25.7 296.6c-3.4 8.3-5.5 15.5-4.8 16 1.2.7 24.8-8.3 38.1-14.6 9.6-4.4 17.6-7.8 17.8-7.7.2.2-3.2 8.5-7.7 18.5-6.4 14.3-15.5 37.4-14.6 38.4 1.2 1.2 16.5-1.5 26.9-4.9 22.6-7.4 50.3-23.2 75.2-41.6 4.7-3.4 8.6-6 8.6-5.8 0 .2-3.2 5.5-7.1 11.7-24.4 38.5-50.5 70.6-80.3 97.7l-13.3 12 17.7.7c9.7.4 28.5.4 41.7 0l24-.7 8.7-14.8c14.4-24.5 34.1-66.7 44.2-95.6 1.2-3.3 2.3-5.8 2.4-5.7.1.1 1.8 5.6 3.7 12.2 7.5 26 22.7 68.1 31.7 86.6l4.1 8.3 12.6.7c18.1 1 39.3-.5 50.5-3.5l9.2-2.5-13.5-14.8c-29.3-32-61.3-77.4-76.2-106.5-3.5-6.8-6.3-12.5-6.1-12.5.2 0 5.1 3.6 11 8 22.2 17 58.7 37.8 81.6 46.1 12.8 4.7 27.8 7.7 27.8 5.5 0-.8-3.4-11.1-7.6-22.9-4.2-11.8-7.4-21.7-7.2-21.9.2-.2 7.7 3 16.6 7.2 17.5 8.2 36.4 14.8 37.9 13.1.5-.5-1.3-7.2-4-14.9-10.6-30.5-36.8-74.1-70.1-117.3C379.8 106.3 350.5 70.9 335.5 57.7c-11.1-9.7-20.1-14.1-29.7-15.5-7.6-1.1-9.4-1-15 .2z"/>
+  </svg>
+
+  <div class="intro">SEID GEGRÜßT, REISENDER</div>
 
   <h1>Impressum</h1>
 
   <h2>Angaben gemäß § 5 TMG:</h2>
-  <p>EL-ES-DEH c/o COCENTER, Koppoldstraße 1, 86551 Aichach</p>
+  <p>EL-ES-DEH 
+    c/o COCENTER, 
+    Koppoldstraße 1, 
+    86551 Aichach</p>
 
   <h2>Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV:</h2>
   <p>EL-ES-DEH, unter obiger Adresse (Pseudonym)</p>
@@ -87,19 +93,4 @@
 
   <div class="trennlinie"></div>
 
-  <h1>Imprint</h1>
-
-  <h2>Information pursuant to § 5 TMG (German Telemedia Act):</h2>
-  <p>EL-ES-DEH c/o COCENTER, Koppoldstraße 1, 86551 Aichach, Germany</p>
-
-  <h2>Responsible according to § 18 (2) MStV:</h2>
-  <p>EL-ES-DEH, at the address above (pseudonym)</p>
-
-  <h2>Legal Notice</h2>
-  <p>This project is a non-commercial satire platform. It is protected under the German Constitution's guarantee of artistic freedom (Art. 5 Para. 3 GG).</p>
-  <p>The operators reserve the right to disclose the identity of the channel operator in the event of a legitimate legal request.</p>
-
-  <h2>Data Protection</h2>
-  <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g., YouTube, GitHub), their own privacy policies apply.</p>
-</body>
-</html>
+  <h1>Imprint<
