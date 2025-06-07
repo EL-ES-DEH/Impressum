@@ -5,6 +5,23 @@
   <title>Impressum – EL-ES-DEH</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&display=swap" rel="stylesheet">
   <style>
+    @keyframes inkSpread {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+      100% { box-shadow: 0 0 20px 10px rgba(212, 175, 55, 0.2); }
+    }
+
+    h1:hover, h2:hover {
+      animation: inkSpread 0.6s ease-out;
+    }
+
+    .word-counter {
+      text-align: right;
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 0.3em;
+      margin-bottom: 1em;
+      font-style: italic;
+    }
     body {
       background-color: #181818;
       color: #f1f1f1;
@@ -242,8 +259,8 @@
       <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g. YouTube, GitHub), their own privacy policies apply.</p>
     </div>
 
-    <div class="footer">© EL-ES-DEH
-
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
   </div>
 
   </div>
@@ -257,7 +274,8 @@
       </label>
       <br>
       <label>
-        <textarea name="message" required placeholder="Ihre Nachricht an EL-ES-DEH" style="width: 100%; height: 120px; background-color: #1e1e1e; color: #f1f1f1; border: 1px solid #444; padding: 1em; font-size: 1em; font-family: Georgia, serif; border-radius: 4px; resize: vertical; opacity: 0.9;"></textarea>
+        <textarea name="message" required placeholder="Ihre Nachricht an EL-ES-DEH" $1 oninput="updateWordCount()"></textarea>
+      <div id="wordCount" class="word-counter">0 von 500 Zeichen</div>
       </label>
       <div style="text-align: right;">
         <button type="submit" style="margin-top: 1em; background-color: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 0.5em 1.2em; font-size: 1em; cursor: pointer; border-radius: 4px;">Absenden</button>
@@ -309,8 +327,12 @@
     }
   });
 });
+function updateWordCount() {
+  const textarea = document.querySelector('textarea[name="message"]');
+  const counter = document.getElementById('wordCount');
+  counter.textContent = `${textarea.value.length} von 500 Zeichen`;
+}
 </script>
 
 </body>
 </html>
-
