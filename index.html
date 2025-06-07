@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -133,7 +134,7 @@
       color: #181818;
     }
 
-     .kontaktformular {
+    .kontaktformular {
       margin-top: 3em;
       padding-top: 2em;
       border-top: 1px solid #444;
@@ -166,7 +167,6 @@
       background-color: #d4af37;
       color: #181818;
     }
-    
   </style>
 </head>
 <body>
@@ -181,69 +181,18 @@
   <button class="toggle-button" onclick="toggleContent()">Impressum öffnen</button>
 
   <div id="impressumContent" class="content">
-    <h1>Impressum</h1>
+    <!-- Dein Impressumstext hier -->
+    ...
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
+  </div>
 
-    <div class="section">
-      <h2>Angaben gemäß § 5 TMG:</h2>
-      <p class="anschrift">
-        <span class="link">EL-ES-DEH</span><br>
-        c/o COCENTER<br>
-        Koppoldstraße 1<br>
-        86551 Aichach
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Verantwortlich gemäß § 18 Abs. 2 MStV:</h2>
-      <p class="anschrift">
-        <span class="link">EL-ES-DEH</span> (unter obiger Adresse, Pseudonym)
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Rechtliche Hinweise</h2>
-      <p>Dieses Angebot ist ein nicht-kommerzielles Satireprojekt. Es unterliegt dem Schutz der Kunstfreiheit nach Artikel 5 Absatz 3 des Grundgesetzes der Bundesrepublik Deutschland.</p>
-      <p>Die Betreiber behalten sich vor, im Falle berechtigten rechtlichen Interesses den Klarnamen des Kanalbetreibers offenzulegen.</p>
-    </div>
-
-    <div class="section">
-      <h2>Datenschutz</h2>
-      <p>Dieses Projekt erhebt, speichert oder verarbeitet keine personenbezogenen Daten. Für etwaige Datenverarbeitung durch Plattformanbieter (z. B. YouTube, GitHub) gelten deren eigene Datenschutzbestimmungen.</p>
-    </div>
-
-    <hr>
-
-    <h1>Imprint</h1>
-
-    <div class="section">
-      <h2>Information pursuant to § 5 TMG:</h2>
-      <p class="anschrift">
-        <span class="link">EL-ES-DEH</span><br>
-        c/o COCENTER<br>
-        Koppoldstraße 1<br>
-        86551 Aichach, Germany
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Responsible according to § 18 (2) MStV:</h2>
-      <p class="anschrift">
-        <span class="link">EL-ES-DEH</span> (at the address above, pseudonym)
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Legal Notice</h2>
-      <p>This project is a non-commercial satire platform. It is protected under the German Constitution’s guarantee of artistic freedom (Art. 5 Para. 3 GG).</p>
-      <p>The operators reserve the right to disclose the identity of the channel operator in the event of a legitimate legal request.</p>
-    </div>
-
-    <div class="section">
-      <h2>Data Protection</h2>
-      <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g. YouTube, GitHub), their own privacy policies apply.</p>
-    </div>
-
-    <div class="footer">© <span class="link">EL-ES-DEH</span> ·</div>
+  <div class="kontaktformular">
+    <h2>Kontaktformular</h2>
+    <form action="mailto:ELESDEHart@gmail.com" method="post" enctype="text/plain">
+      <textarea name="message" placeholder="Ihre Nachricht an EL-ES-DEH..."></textarea>
+      <br>
+      <input type="submit" value="Absenden">
+    </form>
   </div>
 
   <script>
@@ -270,14 +219,12 @@
       });
     }
 
-     // EL-ES-DEH automatisch verlinken ohne Hervorhebung
+    // EL-ES-DEH automatisch verlinken ohne Hervorhebung
     document.addEventListener("DOMContentLoaded", () => {
       const content = document.getElementById("impressumContent");
       content.innerHTML = content.innerHTML.replace(/\bEL-ES-DEH\b/g, '<a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a>');
     });
   </script>
 
-</body>
-</html>
 </body>
 </html>
