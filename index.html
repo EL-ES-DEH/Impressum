@@ -82,7 +82,6 @@
       100% { transform: translateY(0); }
     }
 
-    /* Impressum-Schalter */
     .toggle-button {
       font-family: 'UnifrakturCook', serif;
       background: none;
@@ -112,9 +111,72 @@
       max-height: 5000px;
       opacity: 1;
     }
+
+    .seitenkopf {
+      font-family: 'UnifrakturCook', serif;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 0.5em;
+      color: #f1f1f1;
+    }
+
+    .seitenkopf a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    .seitenkopf a:hover {
+      color: #d4af37;
+    }
+
+    .suchfeld-container {
+      text-align: left;
+      margin-bottom: 2em;
+    }
+
+    #suche {
+      padding: 0.5em;
+      font-size: 1em;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+      width: 60%;
+    }
+
+    button {
+      padding: 0.5em 1em;
+      margin-left: 0.5em;
+      font-size: 1em;
+      border: 1px solid #d4af37;
+      background-color: transparent;
+      color: #d4af37;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d4af37;
+      color: #181818;
+    }
+
+    mark {
+      background-color: #d4af37;
+      color: #181818;
+    }
   </style>
 </head>
 <body>
+
+  <header class="seitenkopf">
+    <a href="https://youtube.com/@EL-ES-DEH" target="_blank">EL-ES-DEH</a>
+  </header>
+
+  <div class="suchfeld-container">
+    <input type="text" id="suche" placeholder="Suchbegriff eingeben...">
+    <button onclick="sucheBegriff()">Suchen</button>
+  </div>
 
   <div class="intro">SEID GEGRÜßT, REISENDER!</div>
 
@@ -191,9 +253,21 @@
       const content = document.getElementById('impressumContent');
       content.classList.toggle('open');
     }
+
+    function sucheBegriff() {
+      const suchbegriff = document.getElementById("suche").value.toLowerCase();
+      const inhalt = document.getElementById("impressumContent");
+      const abschnitte = inhalt.querySelectorAll("p, h2");
+
+      abschnitte.forEach(el => {
+        el.innerHTML = el.textContent.replace(
+          new RegExp(suchbegriff, 'gi'),
+          match => `<mark>${match}</mark>`
+        );
+      });
+    }
   </script>
 
 </body>
 </html>
-
 
