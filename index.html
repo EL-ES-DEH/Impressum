@@ -233,7 +233,7 @@
   </style>
 </head>
 <body>
-  <button class="toggle-theme" onclick="toggleTheme()">🌓 Modus wechseln</button>
+  <button class="toggle-theme" onclick="toggleTheme()" style="border: none; background: none; font-size: 1.2em;">🌓</button>
   <button onclick="scrollToTop()" id="scrollTopBtn" title="Nach oben">⬆</button>
 
   <div class="suchfeld-container">
@@ -241,9 +241,7 @@
     <input type="text" id="suche" placeholder="Suchbegriff eingeben..." list="letzteSuchbegriffe">
     <button onclick="sucheBegriff()">Suchen</button>
   </div>
-  <div style="text-align: center; margin-bottom: 2em;">
-    <button onclick="generatePDF()">📄 Impressum als PDF herunterladen</button>
-  </div>
+  
   <div class="intro">SEID GEGRÜßT, REISENDER!</div>
 
   <button class="toggle-button" onclick="toggleContent()">Impressum öffnen</button>
@@ -311,8 +309,8 @@
       <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g. YouTube, GitHub), their own privacy policies apply.</p>
     </div>
 
-    <div class="footer">© EL-ES-DEH
- 
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
   </div>
 
   </div>
@@ -334,6 +332,9 @@
       </div>
     </form>
     <div id="form-success" style="display:none; margin-top: 1em; text-align: center; color: #d4af37; font-style: italic;">Vielen Dank für Ihre Nachricht!</div>
+    <div style="text-align: center; margin-top: 2em; font-size: 0.85em; color: #ccc;">
+      <a href="#" onclick="generatePDF(); return false;" style="color: #ccc; text-decoration: underline;">📄 Impressum als PDF herunterladen</a>
+    </div>
   </div>
 
   <script>
