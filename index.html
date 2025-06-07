@@ -5,19 +5,9 @@
   <title>Impressum – EL-ES-DEH</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color: #181818;
-      --text-color: #f1f1f1;
-      --accent-color: #d4af37;
-      --input-bg: #1e1e1e;
-    }
+    
 
-    body.light-mode {
-      --bg-color: #f1f1f1;
-      --text-color: #181818;
-      --accent-color: #8a6d1f;
-      --input-bg: #ffffff;
-    }
+    
 
     body {
       background-color: var(--bg-color);
@@ -233,8 +223,7 @@
   </style>
 </head>
 <body>
-  <button class="toggle-theme" onclick="toggleTheme()" style="border: none; background: none; font-size: 1.2em;">🌓</button>
-  <button onclick="scrollToTop()" id="scrollTopBtn" title="Nach oben">⬆</button>
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Nach oben">⬆</button>
 
   <div class="suchfeld-container">
     <datalist id="letzteSuchbegriffe"></datalist>
@@ -386,9 +375,7 @@ function updateWordCount() {
   counter.textContent = `${textarea.value.length} von 500 Zeichen`;
 }
 // Theme Toggle
-function toggleTheme() {
-  document.body.classList.toggle('light-mode');
-}
+
 
 // Scroll to top button
 window.onscroll = function() {
