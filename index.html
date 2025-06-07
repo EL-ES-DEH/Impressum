@@ -67,21 +67,6 @@
       margin: 4em 0 3em 0;
     }
 
-    .federkiel {
-      position: absolute;
-      top: 1em;
-      right: 2em;
-      width: 50px;
-      height: auto;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-
     .toggle-button {
       font-family: 'UnifrakturCook', serif;
       background: none;
@@ -112,26 +97,8 @@
       opacity: 1;
     }
 
-    .seitenkopf {
-      font-family: 'UnifrakturCook', serif;
-      font-size: 2em;
-      text-align: center;
-      margin-bottom: 0.5em;
-      color: #f1f1f1;
-    }
-
-    .seitenkopf a {
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.3s ease;
-    }
-
-    .seitenkopf a:hover {
-      color: #d4af37;
-    }
-
     .suchfeld-container {
-      text-align: left;
+      text-align: center;
       margin-bottom: 2em;
     }
 
@@ -169,10 +136,6 @@
 </head>
 <body>
 
-  <header class="seitenkopf">
-    <a href="https://youtube.com/@EL-ES-DEH" target="_blank">EL-ES-DEH</a>
-  </header>
-
   <div class="suchfeld-container">
     <input type="text" id="suche" placeholder="Suchbegriff eingeben...">
     <button onclick="sucheBegriff()">Suchen</button>
@@ -188,7 +151,7 @@
     <div class="section">
       <h2>Angaben gemäß § 5 TMG:</h2>
       <p class="anschrift">
-        EL-ES-DEH<br>
+        <span class="link">EL-ES-DEH</span><br>
         c/o COCENTER<br>
         Koppoldstraße 1<br>
         86551 Aichach
@@ -198,7 +161,7 @@
     <div class="section">
       <h2>Verantwortlich gemäß § 18 Abs. 2 MStV:</h2>
       <p class="anschrift">
-        EL-ES-DEH (unter obiger Adresse, Pseudonym)
+        <span class="link">EL-ES-DEH</span> (unter obiger Adresse, Pseudonym)
       </p>
     </div>
 
@@ -220,7 +183,7 @@
     <div class="section">
       <h2>Information pursuant to § 5 TMG:</h2>
       <p class="anschrift">
-        EL-ES-DEH<br>
+        <span class="link">EL-ES-DEH</span><br>
         c/o COCENTER<br>
         Koppoldstraße 1<br>
         86551 Aichach, Germany
@@ -230,7 +193,7 @@
     <div class="section">
       <h2>Responsible according to § 18 (2) MStV:</h2>
       <p class="anschrift">
-        EL-ES-DEH (at the address above, pseudonym)
+        <span class="link">EL-ES-DEH</span> (at the address above, pseudonym)
       </p>
     </div>
 
@@ -245,7 +208,7 @@
       <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g. YouTube, GitHub), their own privacy policies apply.</p>
     </div>
 
-    <div class="footer">© EL-ES-DEH ·</div>
+    <div class="footer">© <span class="link">EL-ES-DEH</span> ·</div>
   </div>
 
   <script>
@@ -255,19 +218,31 @@
     }
 
     function sucheBegriff() {
-      const suchbegriff = document.getElementById("suche").value.toLowerCase();
-      const inhalt = document.getElementById("impressumContent");
-      const abschnitte = inhalt.querySelectorAll("p, h2");
+      const suchbegriff = document.getElementById("suche").value.trim();
+      if (!suchbegriff) return;
+      const content = document.getElementById("impressumContent");
+      const elements = content.querySelectorAll("p, h2, h1, span.anschrift");
+      let gefunden = false;
 
-      abschnitte.forEach(el => {
-        el.innerHTML = el.textContent.replace(
-          new RegExp(suchbegriff, 'gi'),
-          match => `<mark>${match}</mark>`
-        );
+      elements.forEach(el => {
+        const text = el.textContent;
+        const pattern = new RegExp(suchbegriff, "gi");
+        if (pattern.test(text)) {
+          gefunden = true;
+          el.innerHTML = text.replace(pattern, match => `<mark>${match}</mark>`);
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
     }
+
+    // Alle "EL-ES-DEH" automatisch verlinken
+    document.addEventListener("DOMContentLoaded", () => {
+      const content = document.getElementById("impressumContent");
+      content.innerHTML = content.innerHTML.replace(/EL-ES-DEH/g, '<a class="link" href="https://youtube.com/@EL-ES-DEH" target="_blank">EL-ES-DEH</a>');
+    });
   </script>
 
 </body>
 </html>
+
 
