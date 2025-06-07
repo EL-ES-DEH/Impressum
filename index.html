@@ -179,7 +179,7 @@
 
   <button class="toggle-button" onclick="toggleContent()">Impressum öffnen</button>
 
-  <div id="impressumContent" class="content">
+  <div id="impressumContent" class="content open">
     <h1>Impressum</h1>
 
     <div class="section">
@@ -242,25 +242,27 @@
       <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g. YouTube, GitHub), their own privacy policies apply.</p>
     </div>
 
-    <div class="footer">© EL-ES-DEH
-    
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
+    <div class="footer">© <a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a> ·</div>
+  </div>
+
   </div>
 
   <div class="kontaktformular">
     <h2>Kontaktformular</h2>
-    <!-- Hinweis: Für mehr Sicherheit empfiehlt sich ein externer Formularservice -->
-      <form action="https://formspree.io/f/mgvyoqkp" method="POST">
-  <label>
-    Ihre E-Mail-Adresse:<br>
-    <input type="email" name="email" required style="width: 100%; padding: 0.5em; margin-bottom: 1em; background-color: #1e1e1e; color: #f1f1f1; border: 1px solid #444; border-radius: 4px;">
-  </label>
-  <label>
-    Ihre Nachricht:<br>
-    <textarea name="message" required placeholder="Ihre Nachricht an EL-ES-DEH..." style="width: 100%; height: 120px; background-color: #1e1e1e; color: #f1f1f1; border: 1px solid #444; padding: 1em; font-size: 1em; font-family: Georgia, serif; border-radius: 4px; resize: vertical;"></textarea>
-  </label>
-  <br>
-  <button type="submit" style="margin-top: 1em; background-color: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 0.5em 1em; font-size: 1em; cursor: pointer;">Absenden</button>
-</form>
+    <form action="https://formspree.io/f/mgvyoqkp" method="POST">
+      <label>
+        Ihre E-Mail-Adresse:<br>
+        <input type="email" name="email" required style="width: 100%; padding: 0.5em; margin-bottom: 1em; background-color: #1e1e1e; color: #f1f1f1; border: 1px solid #444; border-radius: 4px;">
+      </label>
+      <br>
+      <label>
+        <textarea name="message" required placeholder="Ihre Nachricht an EL-ES-DEH" style="width: 100%; height: 120px; background-color: #1e1e1e; color: #f1f1f1; border: 1px solid #444; padding: 1em; font-size: 1em; font-family: Georgia, serif; border-radius: 4px; resize: vertical; opacity: 0.9;"></textarea>
+      </label>
+      <div style="text-align: right;">
+        <button type="submit" style="margin-top: 1em; background-color: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 0.5em 1.2em; font-size: 1em; cursor: pointer; border-radius: 4px;">Absenden</button>
+      </div>
+    </form>
   </div>
 
   <script>
@@ -293,6 +295,9 @@
       content.innerHTML = content.innerHTML.replace(/\bEL-ES-DEH\b/g, '<a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a>');
     });
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
