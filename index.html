@@ -330,6 +330,83 @@
       const sidebar = document.getElementById('sidebarMenu');
       sidebar.classList.toggle('open');
     }
-  </script>
+  function toggleContent() {
+  const content = document.getElementById('impressumContent');
+  content.classList.toggle('open');
+}
+
+function updateWordCount() {
+  const textarea = document.querySelector('textarea[name="message"]');
+  const counter = document.getElementById('wordCount');
+  counter.textContent = `${textarea.value.length} von 500 Zeichen`;
+}
+
+function generatePDF() {
+  const printContents = document.getElementById("impressumContent").innerHTML;
+  const newWin = window.open("", "", "height=600,width=800");
+  newWin.document.write('<html><head><title>Impressum PDF</title></head><body style="font-family: Georgia, serif;">');
+  newWin.document.write(printContents);
+  newWin.document.write('</body></html>');
+  newWin.document.close();
+  newWin.print();
+}
+
+window.onscroll = function () {
+  const btn = document.getElementById("scrollTopBtn");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function sucheBegriff() {
+  const suchbegriff = document.getElementById("suche").value.trim();
+  if (!suchbegriff) return;
+  let gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
+  if (!gespeicherte.includes(suchbegriff)) {
+    gespeicherte.unshift(suchbegriff);
+    if (gespeicherte.length > 3) gespeicherte.pop();
+    localStorage.setItem("suche", JSON.stringify(gespeicherte));
+  }
+  const content = document.getElementById("impressumContent");
+  const elements = content.querySelectorAll("p, h2, h1, span.anschrift");
+  elements.forEach(el => {
+    const text = el.textContent;
+    const pattern = new RegExp(suchbegriff, "gi");
+    el.innerHTML = text.replace(pattern, match => `<mark>${match}</mark>`);
+  });
+  const first = content.querySelector("mark");
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
+  const datalist = document.getElementById("letzteSuchbegriffe");
+  datalist.innerHTML = gespeicherte.map(e => `<option value="${e}">`).join("");
+
+  const impressum = document.getElementById("impressumContent");
+  impressum.innerHTML = impressum.innerHTML.replace(/EL-ES-DEH/g, '<a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a>');
+
+  document.querySelector('.kontaktformular form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        document.getElementById('form-success').style.display = 'block';
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
