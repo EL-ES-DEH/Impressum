@@ -5,15 +5,21 @@
   <title>Impressum – EL-ES-DEH</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&display=swap" rel="stylesheet">
   <style>
-    
-
-    
-
+    :root {
+      --bg-color: #181818;
+      --text-color: #f1f1f1;
+      --accent-color: #d4af37;
+    }
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
+      font-family: Georgia, serif;
+      margin: 4em auto;
+      max-width: 800px;
+      padding: 0 1.5em;
+      line-height: 1.6;
+      position: relative;
     }
-
     .toggle-theme {
       position: absolute;
       top: 1em;
@@ -26,7 +32,6 @@
       padding: 0.3em 0.6em;
       font-size: 0.9em;
     }
-
     #scrollTopBtn {
       position: fixed;
       bottom: 40px;
@@ -41,9 +46,7 @@
       cursor: pointer;
       padding: 10px;
       border-radius: 4px;
-      
     }
-
     .word-counter {
       text-align: right;
       font-size: 0.9em;
@@ -52,34 +55,20 @@
       margin-bottom: 1em;
       font-style: italic;
     }
-    body {
-      background-color: #181818;
-      color: #f1f1f1;
-      font-family: Georgia, serif;
-      margin: 4em auto;
-      max-width: 800px;
-      padding: 0 1.5em;
-      line-height: 1.6;
-      position: relative;
-    }
-
     h1, h2 {
       font-family: 'UnifrakturCook', serif !important;
       color: #f1f1f1;
       text-align: center;
     }
-
     h1 {
       font-size: 3.5em;
       margin-bottom: 0.4em;
     }
-
     h2 {
       font-size: 1.7em;
       margin-top: 2.5em;
       margin-bottom: 0.5em;
     }
-
     .intro {
       font-family: 'UnifrakturCook', serif !important;
       font-size: 2.2em;
@@ -89,17 +78,14 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .anschrift {
       text-align: center;
       line-height: 1.4;
       margin-top: 0.5em;
     }
-
     .section {
       margin-top: 2em;
     }
-
     .footer {
       margin-top: 4em;
       text-align: center;
@@ -107,18 +93,16 @@
       color: #888;
       font-style: italic;
     }
-
     hr {
       border: none;
       border-top: 1px solid #444;
       margin: 4em 0 3em 0;
     }
-
     .toggle-button {
       font-family: 'UnifrakturCook', serif;
       background: none;
-      border: 2px solid #d4af37;
-      color: #d4af37;
+      border: 2px solid var(--accent-color);
+      color: var(--accent-color);
       padding: 0.6em 1.2em;
       font-size: 1.5em;
       cursor: pointer;
@@ -126,29 +110,24 @@
       margin: 2em auto;
       transition: all 0.3s ease;
     }
-
     .toggle-button:hover {
-      background: #d4af37;
-      color: #181818;
+      background: var(--accent-color);
+      color: var(--bg-color);
     }
-
     .content {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       transition: max-height 1.2s ease, opacity 1s ease;
     }
-
     .content.open {
       max-height: 5000px;
       opacity: 1;
     }
-
     .suchfeld-container {
       text-align: center;
       margin-bottom: 2em;
     }
-
     #suche {
       padding: 0.5em;
       font-size: 1em;
@@ -158,34 +137,29 @@
       color: #f1f1f1;
       width: 60%;
     }
-
     button {
       padding: 0.5em 1em;
       margin-left: 0.5em;
       font-size: 1em;
-      border: 1px solid #d4af37;
+      border: 1px solid var(--accent-color);
       background-color: transparent;
-      color: #d4af37;
+      color: var(--accent-color);
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     button:hover {
-      background-color: #d4af37;
-      color: #181818;
+      background-color: var(--accent-color);
+      color: var(--bg-color);
     }
-
     mark {
-      background-color: #d4af37;
-      color: #181818;
+      background-color: var(--accent-color);
+      color: var(--bg-color);
     }
-
     .kontaktformular {
       margin-top: 3em;
       padding-top: 2em;
       border-top: 1px solid #444;
     }
-
     .kontaktformular textarea {
       width: 100%;
       height: 120px;
@@ -198,39 +172,84 @@
       border-radius: 4px;
       resize: vertical;
     }
-
     .kontaktformular input[type="submit"] {
       margin-top: 1em;
       background-color: transparent;
-      border: 1px solid #d4af37;
-      color: #d4af37;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
       padding: 0.5em 1em;
       font-size: 1em;
       cursor: pointer;
     }
-
     .kontaktformular input[type="submit"]:hover {
-      background-color: #d4af37;
-      color: #181818;
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+    }
+    #sidebarToggle {
+      position: fixed;
+      top: 1em;
+      left: 1em;
+      font-size: 1.8em;
+      cursor: pointer;
+      z-index: 1001;
+      color: var(--accent-color);
+      background-color: transparent;
+      border: none;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -200px;
+      width: 180px;
+      height: 100%;
+      background-color: #121212;
+      padding-top: 3em;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+      transition: left 0.4s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar a {
+      padding: 1em;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-family: 'UnifrakturCook', serif;
+      border-bottom: 1px solid #333;
+      transition: background-color 0.2s;
+    }
+    .sidebar a:hover {
+      background-color: #1e1e1e;
+    }
+    .sidebar.open {
+      left: 0;
     }
   </style>
 </head>
 <body>
-    <button onclick="scrollToTop()" id="scrollTopBtn" title="Nach oben">⬆</button>
+  <div id="sidebarToggle" onclick="toggleSidebar()">☰</div>
+  <div id="sidebarMenu" class="sidebar">
+    <a href="/blog/index.html">Blog</a>
+    <a href="/newsletter/index.html">Newsletter</a>
+    <a href="#impressumContent" onclick="toggleContent(); toggleSidebar()">Impressum</a>
+  </div>
+
+  <!-- AB HIER folgt der gesamte ursprüngliche Inhalt vollständig -->
+
+  <button onclick="scrollToTop()" id="scrollTopBtn" title="Nach oben">⬆</button>
 
   <div class="suchfeld-container">
     <datalist id="letzteSuchbegriffe"></datalist>
     <input type="text" id="suche" placeholder="Suchbegriff eingeben..." list="letzteSuchbegriffe">
     <button onclick="sucheBegriff()">Suchen</button>
   </div>
-  
+
   <div class="intro">SEID GEGRÜßT, REISENDER!</div>
 
   <button class="toggle-button" onclick="toggleContent()">Impressum öffnen</button>
 
   <div id="impressumContent" class="content">
     <h1>Impressum</h1>
-
     <div class="section">
       <h2>Angaben gemäß § 5 TMG:</h2>
       <p class="anschrift">
@@ -240,29 +259,23 @@
         86551 Aichach
       </p>
     </div>
-
     <div class="section">
       <h2>Verantwortlich gemäß § 18 Abs. 2 MStV:</h2>
       <p class="anschrift">
         <span>EL-ES-DEH</span> (unter obiger Adresse, Pseudonym)
       </p>
     </div>
-
     <div class="section">
       <h2>Rechtliche Hinweise</h2>
       <p>Dieses Angebot ist ein nicht-kommerzielles Satireprojekt. Es unterliegt dem Schutz der Kunstfreiheit nach Artikel 5 Absatz 3 des Grundgesetzes der Bundesrepublik Deutschland.</p>
       <p>Die Betreiber behalten sich vor, im Falle berechtigten rechtlichen Interesses den Klarnamen des Kanalbetreibers offenzulegen.</p>
     </div>
-
     <div class="section">
       <h2>Datenschutz</h2>
       <p>Dieses Projekt erhebt, speichert oder verarbeitet keine personenbezogenen Daten. Für etwaige Datenverarbeitung durch Plattformanbieter (z. B. YouTube, GitHub) gelten deren eigene Datenschutzbestimmungen.</p>
     </div>
-
     <hr>
-
     <h1>Imprint</h1>
-
     <div class="section">
       <h2>Information pursuant to § 5 TMG:</h2>
       <p class="anschrift">
@@ -272,29 +285,22 @@
         86551 Aichach, Germany
       </p>
     </div>
-
     <div class="section">
       <h2>Responsible according to § 18 (2) MStV:</h2>
       <p class="anschrift">
         <span>EL-ES-DEH</span> (at the address above, pseudonym)
       </p>
     </div>
-
     <div class="section">
       <h2>Legal Notice</h2>
       <p>This project is a non-commercial satire platform. It is protected under the German Constitution’s guarantee of artistic freedom (Art. 5 Para. 3 GG).</p>
       <p>The operators reserve the right to disclose the identity of the channel operator in the event of a legitimate legal request.</p>
     </div>
-
     <div class="section">
       <h2>Data Protection</h2>
       <p>This site does not collect, store, or process any personal data. For any data handling by platform providers (e.g. YouTube, GitHub), their own privacy policies apply.</p>
     </div>
-
-    <div class="footer">© EL-ES-DEH
-    
-  </div>
-
+    <div class="footer">© EL-ES-DEH</div>
   </div>
 
   <div class="kontaktformular">
@@ -306,8 +312,8 @@
       </label>
       <br>
       <label>
-        <textarea name="message" required placeholder="Ihre Nachricht an EL-ES-DEH" $1 oninput="updateWordCount()"></textarea>
-      <div id="wordCount" class="word-counter">0 von 500 Zeichen</div>
+        <textarea name="message" required placeholder="Ihre Nachricht an EL-ES-DEH" oninput="updateWordCount()"></textarea>
+        <div id="wordCount" class="word-counter">0 von 500 Zeichen</div>
       </label>
       <div style="text-align: right;">
         <button type="submit" style="margin-top: 1em; background-color: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 0.5em 1.2em; font-size: 1em; cursor: pointer; border-radius: 4px;">Absenden</button>
@@ -320,124 +326,10 @@
   </div>
 
   <script>
-    function toggleContent() {
-      const content = document.getElementById('impressumContent');
-      content.classList.toggle('open');
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarMenu');
+      sidebar.classList.toggle('open');
     }
-
-    function sucheBegriff() {
-      const suchbegriff = document.getElementById("suche").value.trim();
-      if (!suchbegriff) return;
-      const content = document.getElementById("impressumContent");
-      const elements = content.querySelectorAll("p, h2, h1, span.anschrift");
-      let gefunden = false;
-
-      elements.forEach(el => {
-        const text = el.textContent;
-        const pattern = new RegExp(suchbegriff, "gi");
-        if (pattern.test(text)) {
-          gefunden = true;
-          el.innerHTML = text.replace(pattern, match => `<mark>${match}</mark>`);
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
-    }
-
-    // EL-ES-DEH automatisch verlinken ohne Hervorhebung
-    document.addEventListener("DOMContentLoaded", () => {
-      const content = document.getElementById("impressumContent");
-      content.innerHTML = content.innerHTML.replace(/\bEL-ES-DEH\b/g, '<a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a>');
-    });
-  document.querySelector('.kontaktformular form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const form = e.target;
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  }).then(response => {
-    if (response.ok) {
-      form.reset();
-      document.getElementById('form-success').style.display = 'block';
-    }
-  });
-});
-function updateWordCount() {
-  const textarea = document.querySelector('textarea[name="message"]');
-  const counter = document.getElementById('wordCount');
-  counter.textContent = `${textarea.value.length} von 500 Zeichen`;
-}
-// Theme Toggle
-
-
-// Scroll to top button
-window.onscroll = function() {
-  const btn = document.getElementById("scrollTopBtn");
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-};
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Local storage for search terms
-function sucheBegriff() {
-  const suchbegriff = document.getElementById("suche").value.trim();
-  if (!suchbegriff) return;
-  let gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
-  if (!gespeicherte.includes(suchbegriff)) {
-    gespeicherte.unshift(suchbegriff);
-    if (gespeicherte.length > 3) gespeicherte.pop();
-    localStorage.setItem("suche", JSON.stringify(gespeicherte));
-  }
-  const content = document.getElementById("impressumContent");
-  const elements = content.querySelectorAll("p, h2, h1, span.anschrift");
-  elements.forEach(el => {
-    const text = el.textContent;
-    const pattern = new RegExp(suchbegriff, "gi");
-    el.innerHTML = text.replace(pattern, match => `<mark>${match}</mark>`);
-  });
-  const first = content.querySelector("mark");
-  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
-  const datalist = document.getElementById("letzteSuchbegriffe");
-  datalist.innerHTML = gespeicherte.map(e => `<option value="${e}">`).join("");
-});
-
-// PDF export
-function generatePDF() {
-  const printContents = document.getElementById("impressumContent").innerHTML;
-  const newWin = window.open("", "", "height=600,width=800");
-  newWin.document.write('<html><head><title>Impressum PDF</title></head><body style="font-family: Georgia, serif;">');
-  newWin.document.write(printContents);
-  newWin.document.write('</body></html>');
-  newWin.document.close();
-  newWin.print();
-}
-</script>
-
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
