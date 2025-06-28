@@ -253,8 +253,8 @@
       background-color: var(--card-bg);
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      max-width: 750px; /* Increased from 600px */
-      width: 90%; /* Added for better proportional scaling */
+      max-width: 750px;
+      width: 90%;
     }
     
     .kontaktformular textarea {
@@ -409,18 +409,24 @@
       
       .suchfeld-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
+        gap: 0.5em;
+        width: 90%;
+        margin: 0 auto 2em auto;
       }
       
       #suche {
-        width: 90%;
-        margin-bottom: 1em;
+        width: 70%;
+        margin-bottom: 0;
+        flex-grow: 1;
       }
       
       button {
+        width: auto;
         margin-left: 0;
-        width: 90%;
+        flex-shrink: 0;
       }
       
       .kontaktformular {
@@ -458,6 +464,19 @@
       
       .impressum-container {
         padding: 1em;
+      }
+      
+      .suchfeld-container {
+        flex-direction: column;
+        gap: 1em;
+      }
+      
+      #suche {
+        width: 100%;
+      }
+      
+      button {
+        width: 100%;
       }
     }
   </style>
