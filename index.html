@@ -2,24 +2,36 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impressum – EL-ES-DEH</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #181818;
+      --bg-color: #000000;
       --text-color: #f1f1f1;
       --accent-color: #d4af37;
+      --accent-hover: #e8c96a;
+      --card-bg: #121212;
+      --card-border: #333333;
+      --overlay: rgba(0, 0, 0, 0.7);
     }
+    
+    * {
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+    
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
       font-family: Georgia, serif;
-      margin: 4em auto;
-      max-width: 800px;
-      padding: 0 1.5em;
+      margin: 0;
+      padding: 4em 1.5em 2em;
       line-height: 1.6;
       position: relative;
+      min-height: 100vh;
     }
+    
     .toggle-theme {
       position: absolute;
       top: 1em;
@@ -28,10 +40,21 @@
       background: var(--bg-color);
       color: var(--accent-color);
       border: 1px solid var(--accent-color);
-      border-radius: 4px;
-      padding: 0.3em 0.6em;
+      border-radius: 20px;
+      padding: 0.5em 1em;
       font-size: 0.9em;
+      transition: all 0.3s ease;
     }
+    
+    .toggle-theme:hover {
+      background: var(--accent-color);
+      color: var(--bg-color);
+    }
+    
+    .toggle-theme:active {
+      transform: scale(0.95);
+    }
+    
     #scrollTopBtn {
       position: fixed;
       bottom: 40px;
@@ -44,9 +67,21 @@
       background-color: var(--accent-color);
       color: var(--bg-color);
       cursor: pointer;
-      padding: 10px;
-      border-radius: 4px;
+      padding: 12px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
     }
+    
+    #scrollTopBtn:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-3px);
+    }
+    
+    #scrollTopBtn:active {
+      transform: translateY(0) scale(0.95);
+    }
+    
     .word-counter {
       text-align: right;
       font-size: 0.9em;
@@ -55,20 +90,24 @@
       margin-bottom: 1em;
       font-style: italic;
     }
+    
     h1, h2 {
       font-family: 'UnifrakturCook', serif !important;
       color: #f1f1f1;
       text-align: center;
     }
+    
     h1 {
       font-size: 3.5em;
       margin-bottom: 0.4em;
     }
+    
     h2 {
       font-size: 1.7em;
       margin-top: 2.5em;
       margin-bottom: 0.5em;
     }
+    
     .intro {
       font-family: 'UnifrakturCook', serif !important;
       font-size: 2.2em;
@@ -78,14 +117,22 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    
     .anschrift {
       text-align: center;
       line-height: 1.4;
       margin-top: 0.5em;
     }
+    
     .section {
       margin-top: 2em;
+      background-color: var(--card-bg);
+      padding: 1.5em;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
+    
     .footer {
       margin-top: 4em;
       text-align: center;
@@ -93,98 +140,171 @@
       color: #888;
       font-style: italic;
     }
+    
     hr {
       border: none;
       border-top: 1px solid #444;
       margin: 4em 0 3em 0;
     }
+    
     .toggle-button {
       font-family: 'UnifrakturCook', serif;
       background: none;
       border: 2px solid var(--accent-color);
       color: var(--accent-color);
-      padding: 0.6em 1.2em;
+      padding: 0.8em 1.5em;
       font-size: 1.5em;
       cursor: pointer;
       display: block;
       margin: 2em auto;
       transition: all 0.3s ease;
+      border-radius: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+    
     .toggle-button:hover {
       background: var(--accent-color);
       color: var(--bg-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
+    
+    .toggle-button:active {
+      transform: translateY(0) scale(0.98);
+    }
+    
     .content {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       transition: max-height 1.2s ease, opacity 1s ease;
     }
+    
     .content.open {
       max-height: 5000px;
       opacity: 1;
     }
+    
     .suchfeld-container {
       text-align: center;
       margin-bottom: 2em;
     }
+    
     #suche {
-      padding: 0.5em;
+      padding: 0.8em 1em;
       font-size: 1em;
       border: 1px solid #444;
-      border-radius: 4px;
-      background-color: #1e1e1e;
-      color: #f1f1f1;
-      width: 60%;
+      border-radius: 25px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      width: 70%;
+      max-width: 500px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+    
+    #suche:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+    }
+    
     button {
-      padding: 0.5em 1em;
+      padding: 0.8em 1.5em;
       margin-left: 0.5em;
       font-size: 1em;
       border: 1px solid var(--accent-color);
       background-color: transparent;
       color: var(--accent-color);
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      border-radius: 25px;
     }
+    
     button:hover {
       background-color: var(--accent-color);
       color: var(--bg-color);
+      transform: translateY(-2px);
     }
+    
+    button:active {
+      transform: translateY(0) scale(0.98);
+    }
+    
     mark {
       background-color: var(--accent-color);
       color: var(--bg-color);
+      padding: 0.1em 0.2em;
+      border-radius: 3px;
     }
+    
     .kontaktformular {
       margin-top: 3em;
-      padding-top: 2em;
+      padding: 2em;
       border-top: 1px solid #444;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
+    
     .kontaktformular textarea {
       width: 100%;
       height: 120px;
-      background-color: #1e1e1e;
-      color: #f1f1f1;
+      background-color: var(--card-bg);
+      color: var(--text-color);
       border: 1px solid #444;
       padding: 1em;
       font-size: 1em;
       font-family: Georgia, serif;
-      border-radius: 4px;
+      border-radius: 10px;
       resize: vertical;
+      transition: border-color 0.3s ease;
     }
+    
+    .kontaktformular textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+    }
+    
+    .kontaktformular input[type="email"] {
+      width: 100%;
+      padding: 0.8em;
+      margin-bottom: 1em;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid #444;
+      border-radius: 10px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .kontaktformular input[type="email"]:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+    }
+    
     .kontaktformular input[type="submit"] {
       margin-top: 1em;
       background-color: transparent;
       border: 1px solid var(--accent-color);
       color: var(--accent-color);
-      padding: 0.5em 1em;
+      padding: 0.8em 1.5em;
       font-size: 1em;
       cursor: pointer;
+      border-radius: 25px;
+      transition: all 0.3s ease;
     }
+    
     .kontaktformular input[type="submit"]:hover {
       background-color: var(--accent-color);
       color: var(--bg-color);
+      transform: translateY(-2px);
     }
+    
+    .kontaktformular input[type="submit"]:active {
+      transform: translateY(0) scale(0.98);
+    }
+    
     #sidebarToggle {
       position: fixed;
       top: 1em;
@@ -195,34 +315,117 @@
       color: var(--accent-color);
       background-color: transparent;
       border: none;
+      transition: transform 0.3s ease;
     }
+    
+    #sidebarToggle:hover {
+      transform: scale(1.1);
+    }
+    
+    #sidebarToggle:active {
+      transform: scale(0.95);
+    }
+    
     .sidebar {
       position: fixed;
       top: 0;
-      left: -200px;
-      width: 180px;
+      left: -250px;
+      width: 250px;
       height: 100%;
       background-color: #121212;
-      padding-top: 3em;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+      padding-top: 4em;
+      box-shadow: 2px 0 15px rgba(0,0,0,0.5);
       transition: left 0.4s ease;
       z-index: 1000;
       display: flex;
       flex-direction: column;
+      border-right: 1px solid var(--accent-color);
     }
+    
     .sidebar a {
-      padding: 1em;
+      padding: 1.2em 1.5em;
       text-decoration: none;
       color: var(--accent-color);
       font-family: 'UnifrakturCook', serif;
       border-bottom: 1px solid #333;
-      transition: background-color 0.2s;
+      transition: all 0.3s ease;
+      font-size: 1.2em;
     }
+    
     .sidebar a:hover {
       background-color: #1e1e1e;
+      padding-left: 2em;
     }
+    
     .sidebar.open {
       left: 0;
+    }
+    
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--overlay);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding-top: 6em;
+      }
+      
+      h1 {
+        font-size: 2.5em;
+      }
+      
+      .intro {
+        font-size: 1.8em;
+      }
+      
+      .suchfeld-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #suche {
+        width: 90%;
+        margin-bottom: 1em;
+      }
+      
+      button {
+        margin-left: 0;
+        width: 90%;
+      }
+      
+      .section, .kontaktformular {
+        padding: 1em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+      
+      h2 {
+        font-size: 1.4em;
+      }
+      
+      .toggle-button {
+        font-size: 1.2em;
+        padding: 0.6em 1em;
+      }
     }
   </style>
 </head>
@@ -233,6 +436,7 @@
     <a href="https://el-es-deh.github.io/Newsletter/">Newsletter</a>
     <a href=" " onclick="toggleContent(); toggleSidebar()">Impressum</a>
   </div>
+  <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
   <button onclick="scrollToTop()" id="scrollTopBtn" title="Nach oben">⬆</button>
 
@@ -291,7 +495,7 @@
     </div>
     <div class="section">
       <h2>Legal Notice</h2>
-      <p>This project is a non-commercial satire platform. It is protected under the German Constitution’s guarantee of artistic freedom (Art. 5 Para. 3 GG).</p>
+      <p>This project is a non-commercial satire platform. It is protected under the German Constitution's guarantee of artistic freedom (Art. 5 Para. 3 GG).</p>
       <p>The operators reserve the right to disclose the identity of the channel operator in the event of a legitimate legal request.</p>
     </div>
     <div class="section">
@@ -306,7 +510,7 @@
     <form action="https://formspree.io/f/mgvyoqkp" method="POST">
       <label>
         Ihre E-Mail-Adresse:<br>
-        <input type="email" name="email" required style="width: 100%; padding: 0.5em; margin-bottom: 1em; background-color: #1e1e1e; color: #f1f1f1; border: 1px solid #444; border-radius: 4px;">
+        <input type="email" name="email" required style="width: 100%; padding: 0.8em; margin-bottom: 1em; background-color: var(--card-bg); color: var(--text-color); border: 1px solid #444; border-radius: 10px;">
       </label>
       <br>
       <label>
@@ -314,10 +518,10 @@
         <div id="wordCount" class="word-counter">0 von 500 Zeichen</div>
       </label>
       <div style="text-align: right;">
-        <button type="submit" style="margin-top: 1em; background-color: transparent; border: 1px solid #d4af37; color: #d4af37; padding: 0.5em 1.2em; font-size: 1em; cursor: pointer; border-radius: 4px;">Absenden</button>
+        <button type="submit" style="margin-top: 1em; background-color: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 0.8em 1.5em; font-size: 1em; cursor: pointer; border-radius: 25px;">Absenden</button>
       </div>
     </form>
-    <div id="form-success" style="display:none; margin-top: 1em; text-align: center; color: #d4af37; font-style: italic;">Vielen Dank für Ihre Nachricht!</div>
+    <div id="form-success" style="display:none; margin-top: 1em; text-align: center; color: var(--accent-color); font-style: italic;">Vielen Dank für Ihre Nachricht!</div>
     <div style="text-align: center; margin-top: 2em; font-size: 0.85em; color: #ccc;">
       <a href="#" onclick="generatePDF(); return false;" style="color: #ccc; text-decoration: underline;">📄 Impressum als PDF herunterladen</a>
     </div>
@@ -326,85 +530,88 @@
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('sidebarOverlay');
       sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
     }
-  function toggleContent() {
-  const content = document.getElementById('impressumContent');
-  content.classList.toggle('open');
-}
+    
+    function toggleContent() {
+      const content = document.getElementById('impressumContent');
+      content.classList.toggle('open');
+    }
 
-function updateWordCount() {
-  const textarea = document.querySelector('textarea[name="message"]');
-  const counter = document.getElementById('wordCount');
-  counter.textContent = `${textarea.value.length} von 500 Zeichen`;
-}
+    function updateWordCount() {
+      const textarea = document.querySelector('textarea[name="message"]');
+      const counter = document.getElementById('wordCount');
+      counter.textContent = `${textarea.value.length} von 500 Zeichen`;
+    }
 
-function generatePDF() {
-  const printContents = document.getElementById("impressumContent").innerHTML;
-  const newWin = window.open("", "", "height=600,width=800");
-  newWin.document.write('<html><head><title>Impressum PDF</title></head><body style="font-family: Georgia, serif;">');
-  newWin.document.write(printContents);
-  newWin.document.write('</body></html>');
-  newWin.document.close();
-  newWin.print();
-}
+    function generatePDF() {
+      const printContents = document.getElementById("impressumContent").innerHTML;
+      const newWin = window.open("", "", "height=600,width=800");
+      newWin.document.write('<html><head><title>Impressum PDF</title></head><body style="font-family: Georgia, serif;">');
+      newWin.document.write(printContents);
+      newWin.document.write('</body></html>');
+      newWin.document.close();
+      newWin.print();
+    }
 
-window.onscroll = function () {
-  const btn = document.getElementById("scrollTopBtn");
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-};
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function sucheBegriff() {
-  const suchbegriff = document.getElementById("suche").value.trim();
-  if (!suchbegriff) return;
-  let gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
-  if (!gespeicherte.includes(suchbegriff)) {
-    gespeicherte.unshift(suchbegriff);
-    if (gespeicherte.length > 3) gespeicherte.pop();
-    localStorage.setItem("suche", JSON.stringify(gespeicherte));
-  }
-  const content = document.getElementById("impressumContent");
-  const elements = content.querySelectorAll("p, h2, h1, span.anschrift");
-  elements.forEach(el => {
-    const text = el.textContent;
-    const pattern = new RegExp(suchbegriff, "gi");
-    el.innerHTML = text.replace(pattern, match => `<mark>${match}</mark>`);
-  });
-  const first = content.querySelector("mark");
-  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
-  const datalist = document.getElementById("letzteSuchbegriffe");
-  datalist.innerHTML = gespeicherte.map(e => `<option value="${e}">`).join("");
-
-  const impressum = document.getElementById("impressumContent");
-  impressum.innerHTML = impressum.innerHTML.replace(/#EL-ES-DEH#/g, '<a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a>');
-
-  document.querySelector('.kontaktformular form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const form = e.target;
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        form.reset();
-        document.getElementById('form-success').style.display = 'block';
+    window.onscroll = function () {
+      const btn = document.getElementById("scrollTopBtn");
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
       }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function sucheBegriff() {
+      const suchbegriff = document.getElementById("suche").value.trim();
+      if (!suchbegriff) return;
+      let gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
+      if (!gespeicherte.includes(suchbegriff)) {
+        gespeicherte.unshift(suchbegriff);
+        if (gespeicherte.length > 3) gespeicherte.pop();
+        localStorage.setItem("suche", JSON.stringify(gespeicherte));
+      }
+      const content = document.getElementById("impressumContent");
+      const elements = content.querySelectorAll("p, h2, h1, span.anschrift");
+      elements.forEach(el => {
+        const text = el.textContent;
+        const pattern = new RegExp(suchbegriff, "gi");
+        el.innerHTML = text.replace(pattern, match => `<mark>${match}</mark>`);
+      });
+      const first = content.querySelector("mark");
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
+      const datalist = document.getElementById("letzteSuchbegriffe");
+      datalist.innerHTML = gespeicherte.map(e => `<option value="${e}">`).join("");
+
+      const impressum = document.getElementById("impressumContent");
+      impressum.innerHTML = impressum.innerHTML.replace(/#EL-ES-DEH#/g, '<a href="https://youtube.com/@EL-ES-DEH" target="_blank" style="color: inherit; text-decoration: none;">EL-ES-DEH</a>');
+
+      document.querySelector('.kontaktformular form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const form = e.target;
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(response => {
+          if (response.ok) {
+            form.reset();
+            document.getElementById('form-success').style.display = 'block';
+          }
+        });
+      });
     });
-  });
-});
-</script>
+  </script>
 </body>
 </html>
