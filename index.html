@@ -30,90 +30,8 @@
       line-height: 1.6;
       position: relative;
       min-height: 100vh;
-      overflow-x: hidden;
     }
     
-    /* ===== INK BLOT BACKGROUND ELEMENTS ===== */
-    .ink-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .ink-blot {
-      position: absolute;
-      opacity: 0.03;
-      filter: blur(8px);
-      background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-      border-radius: 50%;
-      animation-duration: 30s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-    }
-    
-    .ink-blot-1 {
-      width: 350px;
-      height: 350px;
-      top: 15%;
-      left: 10%;
-      animation-name: float-1;
-    }
-    
-    .ink-blot-2 {
-      width: 450px;
-      height: 450px;
-      bottom: 10%;
-      right: 5%;
-      animation-name: float-2;
-      animation-delay: 5s;
-    }
-    
-    .ink-blot-3 {
-      width: 300px;
-      height: 300px;
-      top: 60%;
-      left: 25%;
-      animation-name: float-3;
-      animation-delay: 10s;
-    }
-    
-    @keyframes float-1 {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(20px, 25px) rotate(3deg); }
-      50% { transform: translate(-15px, 30px) rotate(-2deg); }
-      75% { transform: translate(15px, -10px) rotate(2deg); }
-    }
-    
-    @keyframes float-2 {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(-25px, 20px) rotate(-3deg); }
-      50% { transform: translate(20px, -15px) rotate(2deg); }
-      75% { transform: translate(-15px, 25px) rotate(-1deg); }
-    }
-    
-    @keyframes float-3 {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(15px, -20px) rotate(2deg); }
-      50% { transform: translate(-20px, 15px) rotate(-2deg); }
-      75% { transform: translate(10px, 20px) rotate(1deg); }
-    }
-    
-    @media (max-width: 768px) {
-      .ink-blot {
-        opacity: 0.02;
-        filter: blur(6px);
-      }
-      .ink-blot-1 { width: 250px; height: 250px; }
-      .ink-blot-2 { width: 300px; height: 300px; }
-      .ink-blot-3 { width: 200px; height: 200px; }
-    }
-
-    /* ===== EXISTING STYLES (UNCHANGED) ===== */
     .toggle-theme {
       position: absolute;
       top: 1em;
@@ -564,14 +482,6 @@
   </style>
 </head>
 <body>
-  <!-- ===== INK BLOT BACKGROUND ELEMENT ===== -->
-  <div class="ink-background">
-    <div class="ink-blot ink-blot-1"></div>
-    <div class="ink-blot ink-blot-2"></div>
-    <div class="ink-blot ink-blot-3"></div>
-  </div>
-
-  <!-- ===== EXISTING CONTENT (UNCHANGED) ===== -->
   <div id="sidebarToggle" onclick="toggleSidebar()">☰</div>
   <div id="sidebarMenu" class="sidebar">
     <a href="https://el-es-deh.github.io/Newsletter/">Newsletter</a>
@@ -682,7 +592,6 @@
   </div>
 
   <script>
-    // ===== EXISTING JAVASCRIPT (UNCHANGED) =====
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebarMenu');
       const overlay = document.getElementById('sidebarOverlay');
@@ -743,36 +652,6 @@
       const first = content.querySelector("mark");
       if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-
-    // ===== NEW SCROLL-BASED INK BLOT EFFECTS =====
-    document.addEventListener('DOMContentLoaded', function() {
-      const inkBlots = document.querySelectorAll('.ink-blot');
-      
-      window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        
-        inkBlots.forEach((blot, index) => {
-          // Calculate subtle movement based on scroll position
-          const speed = 0.1 + (index * 0.05);
-          const yOffset = scrollPosition * speed;
-          
-          // Get current transform values
-          const currentTransform = blot.style.transform.match(/translate\(([^)]+)\)/) || ['', '0px, 0px'];
-          const rotation = blot.style.transform.match(/rotate\(([^)]+)\)/) || ['', '0deg'];
-          
-          // Apply new transform while preserving existing animations
-          blot.style.transform = `translate(${currentTransform[1]}) translateY(${yOffset}px) rotate(${rotation[1]})`;
-          
-          // Calculate distance from viewport center and adjust opacity
-          const rect = blot.getBoundingClientRect();
-          const blotCenter = rect.top + rect.height/2;
-          const distanceFromCenter = Math.abs(windowHeight/2 - blotCenter);
-          const opacity = 0.03 - (distanceFromCenter / windowHeight * 0.02);
-          blot.style.opacity = Math.max(0.01, opacity);
-        });
-      });
-    });
 
     window.addEventListener("DOMContentLoaded", () => {
       const gespeicherte = JSON.parse(localStorage.getItem("suche") || "[]");
